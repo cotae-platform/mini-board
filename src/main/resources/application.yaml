@@ -1,0 +1,88 @@
+#Tomcat Ports
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 3000
+
+spring:
+  #Common Profiles
+  config:
+    activate:
+      on-profile: mini-board-base
+  #Swagger configurations
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  #Database Naming rule
+  jpa:
+    hibernate:
+      naming: # camelCase -> under_score_case, '.' -> '_', UPPER_CASE is not allowed. changed to lower_case
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    open-in-view: false #About Lazy fetch
+---
+spring:
+  config:
+    activate:
+      on-profile: mini-board-hikari-default
+  datasource:
+    hikari: #DB Connection Pool - Careful Deadlock issue
+      transaction-isolation: TRANSACTION_REPEATABLE_READ # Not use SERIALIZABLE
+      maximum-pool-size: 10
+      minimum-idle: 10 # Hikari Powerfully recommended. Same value as maximum-pool-size
+      connection-timeout: 5000 #5s Timeout.
+      validation-timeout: 3000 #3s Timeout
+      connection-test-query: SELECT 1
+      idle-timeout: 60000
+      max-lifetime: 1800000
+      pool-name: mini_board_hikari_pool
+---
+spring:
+  config:
+    activate:
+      on-profile: mini-board-local-database
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test;MODE=MariaDB;DATABASE_TO_LOWER=TRUE
+    jdbcUrl: jdbc:h2:mem:test;MODE=MariaDB;DATABASE_TO_LOWER=TRUE
+    username: user_test
+    password: 1234
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database: h2
+  sql:
+    init:
+      mode: embedded
+---
+# FIXME Need to confirm with teams.
+#spring:
+#  config:
+#    activate:
+#      on-profile: mini-board-dev-database
+#  datasource:
+#    driver-class-name: org.mariadb.jdbc.Driver
+#    jdbcUrl: jdbc:mariadb://${DB_DEV_SVC}:${DB_DEV_PORT}/${DB_NAME}?serverTimezone=Asia/Seoul # For Hikari
+#    url: jdbc:mariadb://${DB_DEV_SVC}:${DB_DEV_PORT}/${DB_NAME}?serverTimezone=Asia/Seoul
+#    username: ${DB_USER_NAME}
+#    password: ${DB_PASSWORD}
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#    generate-ddl: false
+#    properties:
+#      hibernate:
+#        format_sql: true #Show Beautify sql
+#
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        type:
+#          descriptor:
+#            sql: trace
