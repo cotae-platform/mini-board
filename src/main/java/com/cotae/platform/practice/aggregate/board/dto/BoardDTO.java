@@ -15,11 +15,11 @@ import java.util.Map;
 @Data
 public class BoardDTO {
 
+    private int idx;
     private String title;
     private String writer;
     private String content;
     private Date regDate;
-    private int cnt;
 
 
 
