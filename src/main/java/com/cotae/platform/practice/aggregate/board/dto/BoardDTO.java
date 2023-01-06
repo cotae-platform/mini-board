@@ -1,6 +1,7 @@
 package com.cotae.platform.practice.aggregate.board.dto;
 
 import com.cotae.platform.practice.aggregate.board.entity.BoardEntity;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,22 +18,12 @@ public class BoardDTO {
 
     private int idx;
     private String title;
-    private String writer;
     private String content;
-    private Date regDate;
 
-
-
-
-//    public ResponseEntity BoardApi(@RequestParam() String title
-//            , @RequestParam() String content) {
-//        if (true);
-//        Map<String, String> map = new HashMap<>();
+//    @Builder
+//    public BoardRequestDto(int idx, String title, String content){
 //
-//
-//        map.put("title", title);
-//        map.put("content", content);
-//        return new ResponseEntity<>(map, HttpStatus.CREATED);
 //    }
+
 
 }

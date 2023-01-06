@@ -16,20 +16,14 @@ public class BoardServiceImpl implements BoardService {
 
     private final BoardDomain boardDomain;
 
+
     @Override
     public BoardDTO selectBoard(String id) {
         return this.boardDomain.selectBoardById(id);
     }
 
-    @Override
-    public List<BoardEntity> getBoardList() {
-        return null;
-    }
 
-    @Override
-    public void insertBoard(BoardEntity entity) {
-        BoardDAO.
-    }
+
 
 //    BoardDTO selectBoard(id);
 //    List<BoardEntity> getBoardList();

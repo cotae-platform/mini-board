@@ -14,22 +14,18 @@ import javax.persistence.*;
 @NoArgsConstructor
 
 @Data
-@Entity(name = "Board")
+@Entity
 public class BoardEntity {
 
 
     @Id
-    @Column(name = "IDX")
+    @Column()
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int idx;
-    @Column(name = "TITLE")
+    @Column()
     private String title;
-    @Column(name = "WRITER")
-    private String writer;
-    @Column(name = "CONTENT")
+    @Column(columnDefinition ="TEXT")
     private String content;
-    @Column(name = "REGDATE")
-    private LocalDateTime regDate = LocalDateTime.now();
 
 
 }

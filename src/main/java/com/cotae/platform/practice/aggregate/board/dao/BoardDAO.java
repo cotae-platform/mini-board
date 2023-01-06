@@ -11,21 +11,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 
-public interface BoardDAO extends JpaRepository<BoardEntity, String>{ // <엔티티 클래스, PK타입>
+public interface BoardDAO extends JpaRepository<BoardEntity, Integer>{ // <엔티티 클래스, PK타입>
 
-//    @Query(value = "INSERT INTO Board (TITLE, CONTENT) valus("test_title", "test_content");")
-    public List<BoardEntity> selectAllJPQL();
-
-    @Query(Value = "INSERT INTO Board (TITLE, CONTENT) VALUS('TEST_TITLE','test_content')")
-    public List<BoardEntity> insertBoard();
-
-
-//    public void insertBoard(BoardDTO boardDTO){ // 보드 생성
-//        "JPA를 이용한 insert문"
-//    }
+    List<BoardEntity> findAllByIdx(List<Integer> idx);
+//    @Query(Value = "INSERT INTO Board (TITLE, CONTENT) VALUS('TEST_TITLE','test_content')")
+//    public List<BoardEntity> insertBoard();
 //
-//
-//    public List<BoardEntity> getBoardList(){ // 보드 조회
-//        "전체 조회문"
-//    }
+//    List<BoardEntity> findAll() ;
+
 }

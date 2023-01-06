@@ -15,10 +15,16 @@ import java.awt.*;
 @RequiredArgsConstructor
 public class BoardApi {
     private final BoardService boardService;
+
+
+
     //Constructor Injections
     @RequestMapping("/readBoard.do")
     public void readBoard(BoardEntity boardEntity, Model model){
 //        List<BoardEntity> boardList = BoardService.구현체 이름();
+    }
+    @RequestMapping("/insertBoard.do")
+    public void insertBoard(BoardEntity boardEntity, Model model){
     }
 
 }

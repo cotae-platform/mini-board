@@ -13,11 +13,13 @@ import java.util.List;
 public interface BoardService {
 
 
+    public List<BoardDTO> getBoardList();
 
 
-    BoardDTO selectBoard(String id);
-    List<BoardEntity> getBoardList();
-    void insertBoard(BoardEntity entity);
+    BoardDTO selectBoard(String idx);
+
+
+
 
 //    private final BoardDAO boardDAO;
 //
