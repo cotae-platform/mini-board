@@ -1,3 +1,13 @@
+#Grouping Sources
+spring:
+  profiles:
+    group:
+      "prod": "mini-board-base, mini-board-hikari-default"
+      "dev": "mini-board-base, mini-board-hikari-default"
+      "local": "mini-board-base, mini-board-hikari-default, mini-board-local-database"
+    active: local # Default is local Run.
+
+---
 #Tomcat Ports
 server:
   port: 8080
